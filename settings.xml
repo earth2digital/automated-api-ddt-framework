@@ -77,7 +77,7 @@ if ( testStepResult.getTestStep().getName().equals("Start")) {
     </con:service>
     <con:property>
       <con:name>tempToken</con:name>
-      <con:value>zorpo9mcyRqlVpmK8Jf6fAL2t2qm</con:value>
+      <con:value>MyTdlvPDz6kx0paDPOS8W1sDELt5</con:value>
     </con:property>
     <con:databaseConnectionContainer/>
     <con:jmsConnectionContainer/>
