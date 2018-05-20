@@ -30,42 +30,49 @@
   <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>
   <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
-    <con:script>// Save Scenarios for test report
-if (testStepResult.getTestStep().getName().equals("Start")) {   
-    testStepResult.addMessage("Scenario: " + context.expand( '${ScenarioDataSource#stepDescription}')) 
-}
+    <con:script>// Get variables to control the flow of the script
 
-// execute only the request step that matches the http verb/method defined in the dataSource
-// Check if the current test step is ScenarioDataSource
+def currentTestStepName = testStepResult.getTestStep().getName()
+def currentDataSourceRowStepDescription = context.expand( '${ScenarioDataSource#stepDescription}')
+def currentDataSourceRowSkipFlag = context.expand( '${ScenarioDataSource#Run}')
+def currentDataSourceRowMethod = context.expand( '${ScenarioDataSource#method}')
 
-if ( testStepResult.getTestStep().getName().equals("Start")) {
 
-  if (context.expand( '${ScenarioDataSource#Run}').equals("false")) {
+if ( currentTestStepName.equals("Start")) {
+
+  // Check if current test step to be skipped
+  if (currentDataSourceRowSkipFlag.equals("false")) {
       testRunner.gotoStepByName( "End")
   }else{
-      if (context.expand( '${ScenarioDataSource#method}').equals("LOGIN")) {
+      // 1. Save test step description for report
+      testStepResult.addMessage("Step Description: " + currentDataSourceRowStepDescription) 
+      
+      // based on method route to relevant request
+      if (currentDataSourceRowMethod.equals("LOGIN")) {
 	    	testRunner.gotoStepByName( "LoginRequest")
-	    } else if (context.expand( '${ScenarioDataSource#method}').equals("POST")) {
+	    } else if (currentDataSourceRowMethod.equals("POST")) {
 	    	testRunner.gotoStepByName( "POSTRequest")
-	    } else if (context.expand( '${ScenarioDataSource#method}').equals("GET")) {
+	    } else if (currentDataSourceRowMethod.equals("GET")) {
 	    	testRunner.gotoStepByName( "GETRequest")
-	    } else if (context.expand( '${ScenarioDataSource#method}').equals("PUT")) {
+	    } else if (currentDataSourceRowMethod.equals("PUT")) {
 	    	testRunner.gotoStepByName( "PUTRequest")
-	    } else if (context.expand( '${ScenarioDataSource#method}').equals("DELETE")) {
+	    } else if (currentDataSourceRowMethod.equals("DELETE")) {
 	    	testRunner.gotoStepByName( "DELETERequest")
 	    }
   }
 	
-} else if ( testStepResult.getTestStep().getName().equals("POSTRequest") ||
-               testStepResult.getTestStep().getName().equals("GETRequest") ||
-               testStepResult.getTestStep().getName().equals("PUTRequest") ||
-               testStepResult.getTestStep().getName().equals("DELETERequest") ||
-               testStepResult.getTestStep().getName().equals("PropertyTransferToken") ) {
-    // Run the first test step in the loop
-   // testRunner.gotoStepByName( "ScenarioDataSourceLoop")
-   testRunner.gotoStepByName( "End")
-	
-	//log.info ( "ScenarioDataSourceLoop" )
+	// if current step is any of the steps we route to, then go to End step
+	// as nothing else need to be done
+} else if (currentTestStepName.equals("LoginRequest")) {
+     testRunner.gotoStepByName( "PropertyTransferToken")
+} else if ( currentTestStepName.equals("POSTRequest") ||
+            currentTestStepName.equals("GETRequest") ||
+            currentTestStepName.equals("PUTRequest") ||
+            currentTestStepName.equals("DELETERequest") ||
+            currentTestStepName.equals("PropertyTransferToken") 
+          ) {
+
+     testRunner.gotoStepByName( "End")
 }</con:script>
   </con:eventHandlers>
   <con:environment id="9dd95e45-8e52-4747-9dc0-c6da44243ac3" name="test">
@@ -77,7 +84,7 @@ if ( testStepResult.getTestStep().getName().equals("Start")) {
     </con:service>
     <con:property>
       <con:name>tempToken</con:name>
-      <con:value>MyTdlvPDz6kx0paDPOS8W1sDELt5</con:value>
+      <con:value>mc5sYzedsbwLYuDweyAslD0avRqi</con:value>
     </con:property>
     <con:databaseConnectionContainer/>
     <con:jmsConnectionContainer/>
