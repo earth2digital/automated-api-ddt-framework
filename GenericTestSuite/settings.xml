@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="1a5057de-d60c-408c-a6a7-bc9fed6f287a" name="GenericTestSuite" xmlns:con="http://eviware.com/soapui/config"><con:description>The test suite generated for the REST service [https://www.google.com.au]</con:description><con:settings><con:setting id="1a5057de-d60c-408c-a6a7-bc9fed6f287afileName">GenericTestSuite</con:setting></con:settings><con:runType>SEQUENTIAL</con:runType><con:properties/><con:reportParameters/></con:testSuite>

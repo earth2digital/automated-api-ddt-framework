@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="ba83ba8f-2ec5-483e-b2f9-34568bc3ea15" created="2.3.0" activeEnvironment="test" name="GenericProject_v6" resourceRoot="${projectDir}" updated="2.3.0 2018-03-06T16:28:42Z" encryptionMode="Not encrypted" compositeProjectFormat="1.3" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="IncludeOverview">true</con:setting><con:setting id="IncludeResults">true</con:setting><con:setting id="FlowLayout">false</con:setting><con:setting id="ErrorDetails">true</con:setting><con:setting id="IncludeCoverage">true</con:setting><con:setting id="ProjectSettings@shadowPassword"/></con:settings><con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:endpoint mode="COMPLEMENT" domain="api.myprototype.com.au">https://api.myprototype.com.au</con:endpoint></con:endpointStrategy><con:requirements/><con:properties><con:property><con:name>tempToken</con:name><con:value>ZkdsCt24oFWJ2dqTbOgiftBIixEy</con:value></con:property></con:properties><con:wssContainer/><con:databaseConnectionContainer/><con:jmsConnectionContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:reporting/><con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep"><con:script>// Save Scenarios for test report
+if (testStepResult.getTestStep().getName().equals("Start")) {   
+    testStepResult.addMessage("Scenario: " + context.expand( '${ScenarioDataSource#stepDescription}')) 
+}
+
+// execute only the request step that matches the http verb/method defined in the dataSource
+// Check if the current test step is ScenarioDataSource
+
+if ( testStepResult.getTestStep().getName().equals("Start")) {
+
+  if (context.expand( '${ScenarioDataSource#Run}').equals("false")) {
+      testRunner.gotoStepByName( "End")
+  }else{
+      if (context.expand( '${ScenarioDataSource#method}').equals("LOGIN")) {
+	    	testRunner.gotoStepByName( "LoginRequest")
+	    } else if (context.expand( '${ScenarioDataSource#method}').equals("POST")) {
+	    	testRunner.gotoStepByName( "POSTRequest")
+	    } else if (context.expand( '${ScenarioDataSource#method}').equals("GET")) {
+	    	testRunner.gotoStepByName( "GETRequest")
+	    } else if (context.expand( '${ScenarioDataSource#method}').equals("PUT")) {
+	    	testRunner.gotoStepByName( "PUTRequest")
+	    } else if (context.expand( '${ScenarioDataSource#method}').equals("DELETE")) {
+	    	testRunner.gotoStepByName( "DELETERequest")
+	    }
+  }
+	
+} else if ( testStepResult.getTestStep().getName().equals("POSTRequest") ||
+               testStepResult.getTestStep().getName().equals("GETRequest") ||
+               testStepResult.getTestStep().getName().equals("PUTRequest") ||
+               testStepResult.getTestStep().getName().equals("DELETERequest") ||
+               testStepResult.getTestStep().getName().equals("PropertyTransferToken") ) {
+    // Run the first test step in the loop
+   // testRunner.gotoStepByName( "ScenarioDataSourceLoop")
+   testRunner.gotoStepByName( "End")
+	
+	//log.info ( "ScenarioDataSourceLoop" )
+}</con:script></con:eventHandlers><con:environment id="9dd95e45-8e52-4747-9dc0-c6da44243ac3" name="test"><con:service type="REST" name="ScenarioGenericService"><con:endpoint authProfile="Inherit From Parent" username="" password="" domain="" incomingWss="" outgoingWss="" wssTimeToLive="" wssType="" proxyHost="" proxyPort="" proxyUsername="" proxyPassword="">https://api.myprototype.com.au</con:endpoint></con:service><con:service type="REST" name="LoginService"><con:endpoint authProfile="No Authorization">https://api.myprototype.com.au</con:endpoint></con:service><con:property><con:name>tempToken</con:name><con:value>zorpo9mcyRqlVpmK8Jf6fAL2t2qm</con:value></con:property><con:databaseConnectionContainer/><con:jmsConnectionContainer/></con:environment><con:authRepository/><con:tags/></con:soapui-project>
