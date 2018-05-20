@@ -9,6 +9,10 @@
     <con:setting id="ProjectSettings@shadowPassword"/>
     <con:setting id="ba83ba8f-2ec5-483e-b2f9-34568bc3ea15fileName">GenericProject-readyapi-project</con:setting>
   </con:settings>
+  <con:vcsConfiguration>
+    <con:vcsName>Git</con:vcsName>
+    <con:repositoryIdentifier>https://github.com/earth2digital/automated-api-qa.git</con:repositoryIdentifier>
+  </con:vcsConfiguration>
   <con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:endpoint mode="COMPLEMENT" domain="api.myprototype.com.au">https://api.myprototype.com.au</con:endpoint>
   </con:endpointStrategy>
