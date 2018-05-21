@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-project id="ba83ba8f-2ec5-483e-b2f9-34568bc3ea15" created="2.3.0" activeEnvironment="test" name="GenericProject_v6" resourceRoot="${projectDir}" updated="2.3.0 2018-03-06T16:28:42Z" encryptionMode="Not encrypted" compositeProjectFormat="1.3" xmlns:con="http://eviware.com/soapui/config">
-  <con:description>This is a  Data Driven Test (DDT) Framework that drives test data from an excel spreadsheet</con:description>
+  <con:description>This is a Data Driven Test (DDT) Framework that drives test data from an excel spreadsheet</con:description>
   <con:settings>
     <con:setting id="IncludeOverview">true</con:setting>
     <con:setting id="IncludeResults">true</con:setting>
