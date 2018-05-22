@@ -84,7 +84,7 @@ if ( currentTestStepName.equals("Start")) {
     </con:service>
     <con:property>
       <con:name>tempToken</con:name>
-      <con:value>mc5sYzedsbwLYuDweyAslD0avRqi</con:value>
+      <con:value>AaNjlSFWtwIqJSkQliX1lLnngAqP</con:value>
     </con:property>
     <con:databaseConnectionContainer/>
     <con:jmsConnectionContainer/>

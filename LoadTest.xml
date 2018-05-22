@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:loadUiTest name="LoadTest" id="a1d36fc9-f0fe-461a-a019-a19ce5dd5e7e" xmlns:con="http://eviware.com/soapui/config">
+  <con:description>This is a generic load test</con:description>
   <con:settings>
     <con:setting id="soapUIObjectSourceId">2f1f43c0-85e4-4c01-9fc6-241928a9cebe</con:setting>
     <con:setting id="soapUIObjectSourceType">soapUIObjectSourceType_TestCase</con:setting>
