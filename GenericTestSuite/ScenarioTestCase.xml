@@ -1,39 +1,638 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase id="2f1f43c0-85e4-4c01-9fc6-241928a9cebe" discardOkResults="true" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="ScenarioTestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="2f1f43c0-85e4-4c01-9fc6-241928a9cebefileName">ScenarioTestCase</con:setting></con:settings><con:testStep type="datasource" name="MicroservicesDataSource" id="493c4fd7-1aee-4d3c-9234-7d5e6bbb1ee3"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Excel"><con:configuration><file>API-Automated-QA-Template.xlsx</file><worksheet>Overview</worksheet><cell>D5</cell><ignoreEmpty>true</ignoreEmpty><evaluateFormulas>false</evaluateFormulas></con:configuration></con:dataSource><con:shared>true</con:shared><con:restartShared>true</con:restartShared><con:property>sheetName</con:property><con:startRow/><con:endRow/><con:recordsPerIteration>1</con:recordsPerIteration><con:completeLastOperation>true</con:completeLastOperation><con:trimValues>false</con:trimValues><con:entitizeValues>false</con:entitizeValues><con:restartOnRun>true</con:restartOnRun><con:expandProperties>false</con:expandProperties></con:config></con:testStep><con:testStep type="datasource" name="ScenarioDataSource" id="f6ddf0ea-562d-44ef-8088-a4ee7a864fd6"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Excel"><con:configuration><file>API-Automated-QA-Template.xlsx</file><worksheet>${MicroservicesDataSource#sheetName}</worksheet><cell>B4</cell><ignoreEmpty>true</ignoreEmpty><evaluateFormulas>false</evaluateFormulas></con:configuration></con:dataSource><con:shared>true</con:shared><con:restartShared>true</con:restartShared><con:preload>false</con:preload><con:property>Run</con:property><con:property>stepDescription</con:property><con:property>method</con:property><con:property>path</con:property><con:property>clientId</con:property><con:property>requestPayload</con:property><con:property>isResponseNULL</con:property><con:property>assertionHttpResCode</con:property><con:property>assertionLoginTokenKey</con:property><con:property>assertionLoginTokenExpected</con:property><con:property>assertionPayloadKey1</con:property><con:property>assertionPayloadExpected1</con:property><con:property>assertionPayloadKey2</con:property><con:property>assertionPayloadExpected2</con:property><con:property>assertionPayloadKey3</con:property><con:property>assertionPayloadExpected3</con:property><con:property>assertionPayloadKey4</con:property><con:property>assertionPayloadExpected4</con:property><con:property>assertionPayloadKey5</con:property><con:property>assertionPayloadExpected5</con:property><con:property>assertionPayloadKey6</con:property><con:property>assertionPayloadExpected6</con:property><con:property>assertionPayloadKey7</con:property><con:property>assertionPayloadExpected7</con:property><con:property>assertionPayloadKey8</con:property><con:property>assertionPayloadExpected8</con:property><con:property>assertionPayloadKey9</con:property><con:property>assertionPayloadExpected9</con:property><con:property>assertionPayloadKey10</con:property><con:property>assertionPayloadExpected10</con:property><con:property>assertionPayloadKey11</con:property><con:property>assertionPayloadExpected11</con:property><con:property>assertionPayloadKey12</con:property><con:property>assertionPayloadExpected12</con:property><con:startRow/><con:endRow/><con:recordsPerIteration>1</con:recordsPerIteration><con:completeLastOperation>true</con:completeLastOperation><con:failOnEmpty>true</con:failOnEmpty><con:trimValues>false</con:trimValues><con:entitizeValues>false</con:entitizeValues><con:restartOnRun>true</con:restartOnRun><con:expandProperties>false</con:expandProperties></con:config></con:testStep><con:testStep type="groovy" name="Start" id="d5e655b9-f887-4299-b166-8a12500e496d"><con:settings/><con:config><script/></con:config></con:testStep><con:testStep type="restrequest" name="LoginRequest" id="7c2fcdc5-c288-4846-92f6-a34f7427ae69"><con:settings/><con:config service="LoginService" resourcePath="/{path}" methodName="LOGIN" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="LoginRequest" id="0dd82fd4-f15f-44c8-ad8d-b84bb0b6cb42" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:request>${ScenarioDataSource#requestPayload}</con:request><con:originalUri>https://api.myprototype.com.au/</con:originalUri><con:assertion type="JsonPath Existence Match" name="Check for existence of [bearer]" id="a465ccfd-8c89-459e-8fd2-7f6023c41af6"><con:configuration><path>${ScenarioDataSource#assertionLoginTokenKey}</path><content>${ScenarioDataSource#assertionLoginTokenExpected}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" name="ScriptCheckHTTPResponseCode" id="781b73f3-4b6d-497c-8333-78739ca14467"><con:configuration><scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
+<con:testCase id="2f1f43c0-85e4-4c01-9fc6-241928a9cebe" discardOkResults="true" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="ScenarioTestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="2f1f43c0-85e4-4c01-9fc6-241928a9cebefileName">ScenarioTestCase</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="MicroservicesDataSource" id="493c4fd7-1aee-4d3c-9234-7d5e6bbb1ee3">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>automated-api-qa-master/API-Automated-QA-Template.xlsx</file>
+          <worksheet>Overview</worksheet>
+          <cell>D5</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>sheetName</con:property>
+      <con:startRow/>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="ScenarioDataSource" id="f6ddf0ea-562d-44ef-8088-a4ee7a864fd6">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>automated-api-qa-master/API-Automated-QA-Template.xlsx</file>
+          <worksheet>${MicroservicesDataSource#sheetName}</worksheet>
+          <cell>B4</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:preload>false</con:preload>
+      <con:property>Run</con:property>
+      <con:property>stepDescription</con:property>
+      <con:property>method</con:property>
+      <con:property>path</con:property>
+      <con:property>clientId</con:property>
+      <con:property>requestPayload</con:property>
+      <con:property>isResponseNULL</con:property>
+      <con:property>assertionHttpResCode</con:property>
+      <con:property>assertionLoginTokenKey</con:property>
+      <con:property>assertionLoginTokenExpected</con:property>
+      <con:property>assertionPayloadKey1</con:property>
+      <con:property>assertionPayloadExpected1</con:property>
+      <con:property>assertionPayloadKey2</con:property>
+      <con:property>assertionPayloadExpected2</con:property>
+      <con:property>assertionPayloadKey3</con:property>
+      <con:property>assertionPayloadExpected3</con:property>
+      <con:property>assertionPayloadKey4</con:property>
+      <con:property>assertionPayloadExpected4</con:property>
+      <con:property>assertionPayloadKey5</con:property>
+      <con:property>assertionPayloadExpected5</con:property>
+      <con:property>assertionPayloadKey6</con:property>
+      <con:property>assertionPayloadExpected6</con:property>
+      <con:property>assertionPayloadKey7</con:property>
+      <con:property>assertionPayloadExpected7</con:property>
+      <con:property>assertionPayloadKey8</con:property>
+      <con:property>assertionPayloadExpected8</con:property>
+      <con:property>assertionPayloadKey9</con:property>
+      <con:property>assertionPayloadExpected9</con:property>
+      <con:property>assertionPayloadKey10</con:property>
+      <con:property>assertionPayloadExpected10</con:property>
+      <con:property>assertionPayloadKey11</con:property>
+      <con:property>assertionPayloadExpected11</con:property>
+      <con:property>assertionPayloadKey12</con:property>
+      <con:property>assertionPayloadExpected12</con:property>
+      <con:startRow/>
+      <con:endRow/>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:failOnEmpty>true</con:failOnEmpty>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="Start" id="d5e655b9-f887-4299-b166-8a12500e496d">
+    <con:settings/>
+    <con:config>
+      <script/>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="LoginRequest" id="7c2fcdc5-c288-4846-92f6-a34f7427ae69">
+    <con:settings/>
+    <con:config service="LoginService" resourcePath="/{path}" methodName="LOGIN" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="LoginRequest" id="0dd82fd4-f15f-44c8-ad8d-b84bb0b6cb42" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:request>${ScenarioDataSource#requestPayload}</con:request>
+        <con:originalUri>https://api.myprototype.com.au/</con:originalUri>
+        <con:assertion type="JsonPath Existence Match" name="Check for existence of [bearer]" id="a465ccfd-8c89-459e-8fd2-7f6023c41af6">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionLoginTokenKey}</path>
+            <content>${ScenarioDataSource#assertionLoginTokenExpected}</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" name="ScriptCheckHTTPResponseCode" id="781b73f3-4b6d-497c-8333-78739ca14467">
+          <con:configuration>
+            <scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
 def headers = messageExchange.response.responseHeaders
 def actualHTTPResponse = headers['#status#'][0]
-assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
-  <con:entry key="path" value="${ScenarioDataSource#path}"/>
-  <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
-  <con:entry key="Content-Type" value="application/json"/>
-</con:parameters><con:parameterOrder><con:entry>path</con:entry><con:entry>client_id</con:entry><con:entry>Content-Type</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="transfer" name="PropertyTransferToken" id="351dcc68-626e-4864-bb73-99aa6c681ddb"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>token</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>LoginRequest</con:sourceStep><con:sourcePath>$['data']['bearer']</con:sourcePath><con:targetType>tempToken</con:targetType><con:targetStep>#Project#</con:targetStep><con:targetPath/><con:type>JSONPATH</con:type><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="restrequest" name="POSTRequest" id="5132862c-ac7d-461b-a4af-a51062ad253e"><con:settings/><con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="POSTRequest" id="eee33f2a-c1c0-4c1f-936b-072e89367b88" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://api.myprototype.com.au</con:endpoint><con:request>${ScenarioDataSource#requestPayload}</con:request><con:originalUri>https://www.google.com.au/</con:originalUri><con:assertion type="GroovyScriptAssertion" id="3df6a451-a9f8-452b-ad70-cd6c357b4244" name="Script Assertion"><con:configuration><scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
+assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="path" value="${ScenarioDataSource#path}"/>
+          <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
+          <con:entry key="Content-Type" value="application/json"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>path</con:entry>
+          <con:entry>client_id</con:entry>
+          <con:entry>Content-Type</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="PropertyTransferToken" id="351dcc68-626e-4864-bb73-99aa6c681ddb">
+    <con:settings/>
+    <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>token</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>LoginRequest</con:sourceStep>
+        <con:sourcePath>$['data']['bearer']</con:sourcePath>
+        <con:targetType>tempToken</con:targetType>
+        <con:targetStep>#Project#</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="POSTRequest" id="5132862c-ac7d-461b-a4af-a51062ad253e">
+    <con:settings/>
+    <con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="POST" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="POSTRequest" id="eee33f2a-c1c0-4c1f-936b-072e89367b88" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.myprototype.com.au</con:endpoint>
+        <con:request>${ScenarioDataSource#requestPayload}</con:request>
+        <con:originalUri>https://www.google.com.au/</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" id="3df6a451-a9f8-452b-ad70-cd6c357b4244" name="Script Assertion">
+          <con:configuration>
+            <scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
 def headers = messageExchange.response.responseHeaders
 def actualHTTPResponse = headers['#status#'][0]
-assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="40bc51ea-d464-42ee-ae3e-5e6a3632183f" name="JsonPathMatch1"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey1}</path><content>${ScenarioDataSource#assertionPayloadExpected1}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch2" id="cf9bca35-d2ef-4124-8479-4f4fff1413f3"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey2}</path><content>${ScenarioDataSource#assertionPayloadExpected2}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch3" id="edc012e0-09f0-4481-9e02-11844ce9ff56"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey3}</path><content>${ScenarioDataSource#assertionPayloadExpected3}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch4" id="e8ae7cba-ebc5-4f34-bd8c-6d4cbaab6a9a"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey4}</path><content>${ScenarioDataSource#assertionPayloadExpected4}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch5" id="66d89de5-6551-4af7-8ff2-64b6eedba932"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey5}</path><content>${ScenarioDataSource#assertionPayloadExpected5}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch6" id="a3889dc4-5350-4b7b-96de-a2232cfb7394"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey6}</path><content>${ScenarioDataSource#assertionPayloadExpected6}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch7" id="74622bea-2aa0-42cc-9754-8c7d65366ade"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey7}</path><content>${ScenarioDataSource#assertionPayloadExpected7}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch8" id="81b0d003-b838-42e6-8f8f-427cd3e5c784"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey8}</path><content>${ScenarioDataSource#assertionPayloadExpected8}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch9" id="09ecdc9a-86f7-47eb-b0fc-f7dc5a80547c"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey9}</path><content>${ScenarioDataSource#assertionPayloadExpected9}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch10" id="1a03671e-b95b-4959-ba60-f9c208e1a773"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey10}</path><content>${ScenarioDataSource#assertionPayloadExpected10}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch11" id="81968114-5d60-4f3f-be38-9b77e1663b3f"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey11}</path><content>${ScenarioDataSource#assertionPayloadExpected11}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch12" id="2f93ae7b-7c1d-4ebe-8b1e-e9001e2d500c"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey12}</path><content>${ScenarioDataSource#assertionPayloadExpected12}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
-  <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
-  <con:entry key="path" value="${ScenarioDataSource#path}"/>
-  <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
-  <con:entry key="Content-Type" value="application/json"/>
-</con:parameters><con:parameterOrder><con:entry>path</con:entry><con:entry>client_id</con:entry><con:entry>Content-Type</con:entry></con:parameterOrder><con:environmentSpec><con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3"><con:authProfile>Inherit From Parent</con:authProfile></con:entry><con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="GETRequest" id="dd87f1df-6511-436d-92fe-221a1bcd30bb"><con:settings/><con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GETRequest" id="ae426de9-8231-477a-866e-a49318d955b5" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://api.myprototype.com.au</con:endpoint><con:request/><con:originalUri>https://www.google.com.au/</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="26912253-0dfc-47a7-8dd0-593628be5fdd"><con:configuration><scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
+assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="40bc51ea-d464-42ee-ae3e-5e6a3632183f" name="JsonPathMatch1">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey1}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected1}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch2" id="cf9bca35-d2ef-4124-8479-4f4fff1413f3">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey2}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected2}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch3" id="edc012e0-09f0-4481-9e02-11844ce9ff56">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey3}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected3}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch4" id="e8ae7cba-ebc5-4f34-bd8c-6d4cbaab6a9a">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey4}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected4}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch5" id="66d89de5-6551-4af7-8ff2-64b6eedba932">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey5}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected5}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch6" id="a3889dc4-5350-4b7b-96de-a2232cfb7394">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey6}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected6}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch7" id="74622bea-2aa0-42cc-9754-8c7d65366ade">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey7}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected7}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch8" id="81b0d003-b838-42e6-8f8f-427cd3e5c784">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey8}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected8}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch9" id="09ecdc9a-86f7-47eb-b0fc-f7dc5a80547c">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey9}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected9}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch10" id="1a03671e-b95b-4959-ba60-f9c208e1a773">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey10}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected10}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch11" id="81968114-5d60-4f3f-be38-9b77e1663b3f">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey11}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected11}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch12" id="2f93ae7b-7c1d-4ebe-8b1e-e9001e2d500c">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey12}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected12}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
+          <con:entry key="path" value="${ScenarioDataSource#path}"/>
+          <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
+          <con:entry key="Content-Type" value="application/json"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>path</con:entry>
+          <con:entry>client_id</con:entry>
+          <con:entry>Content-Type</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="GETRequest" id="dd87f1df-6511-436d-92fe-221a1bcd30bb">
+    <con:settings/>
+    <con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="GETRequest" id="ae426de9-8231-477a-866e-a49318d955b5" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.myprototype.com.au</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://www.google.com.au/</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="26912253-0dfc-47a7-8dd0-593628be5fdd">
+          <con:configuration>
+            <scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
 def headers = messageExchange.response.responseHeaders
 def actualHTTPResponse = headers['#status#'][0]
-assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="2213e5ce-fc32-4ff1-ad1c-79b30a15eafa" name="JsonPathMatch1"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey1}</path><content>${ScenarioDataSource#assertionPayloadExpected1}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch2" id="3906a733-f71a-4f91-8622-f18e29b9348a"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey2}</path><content>${ScenarioDataSource#assertionPayloadExpected2}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch3" id="15bcdb4a-a045-49c4-aacc-9248089ba7d2"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey3}</path><content>${ScenarioDataSource#assertionPayloadExpected3}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch4" id="86f34aab-6606-4322-9952-6b6af38f0510"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey4}</path><content>${ScenarioDataSource#assertionPayloadExpected4}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch5" id="c7ef3394-f5b4-49c0-8039-ec6202f31bc4"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey5}</path><content>${ScenarioDataSource#assertionPayloadExpected5}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch6" id="c2aa23cc-72fd-4bb1-86c3-cf410f587f1e"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey6}</path><content>${ScenarioDataSource#assertionPayloadExpected6}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch7" id="26d2a2e5-3000-4033-8bd8-dba65e2bcffa"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey7}</path><content>${ScenarioDataSource#assertionPayloadExpected7}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch8" id="869b1f1e-d30f-49f0-8d08-ba43dc1fb846"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey8}</path><content>${ScenarioDataSource#assertionPayloadExpected8}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch9" id="a1ef47c5-73a0-41bb-9c74-94b548d81411"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey9}</path><content>${ScenarioDataSource#assertionPayloadExpected9}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch10" id="54b4df97-11df-4566-91dc-a5a5a7af4d80"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey10}</path><content>${ScenarioDataSource#assertionPayloadExpected10}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch11" id="bbe17753-8c90-429a-bc90-bc7b00db0040"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey11}</path><content>${ScenarioDataSource#assertionPayloadExpected11}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch12" id="fe0cd225-939a-49a2-ab6e-8912fcd3948c"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey12}</path><content>${ScenarioDataSource#assertionPayloadExpected12}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
-  <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
-  <con:entry key="path" value="${ScenarioDataSource#path}"/>
-  <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
-</con:parameters><con:parameterOrder><con:entry>path</con:entry><con:entry>authorization</con:entry><con:entry>client_id</con:entry></con:parameterOrder><con:environmentSpec><con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3"><con:authProfile>Inherit From Parent</con:authProfile></con:entry><con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="PUTRequest" id="f971273d-fd12-43a4-9cf9-4b29a0b3e442"><con:settings/><con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="PUT" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="PUTRequest" id="0dc66275-d1b1-4688-9f71-f7d684c5b346" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://api.myprototype.com.au</con:endpoint><con:request>${ScenarioDataSource#requestPayload}</con:request><con:originalUri>https://www.google.com.au/</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="4f927dcd-3214-4a04-a85f-c9529f7b56f5"><con:configuration><scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
+assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="2213e5ce-fc32-4ff1-ad1c-79b30a15eafa" name="JsonPathMatch1">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey1}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected1}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch2" id="3906a733-f71a-4f91-8622-f18e29b9348a">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey2}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected2}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch3" id="15bcdb4a-a045-49c4-aacc-9248089ba7d2">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey3}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected3}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch4" id="86f34aab-6606-4322-9952-6b6af38f0510">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey4}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected4}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch5" id="c7ef3394-f5b4-49c0-8039-ec6202f31bc4">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey5}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected5}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch6" id="c2aa23cc-72fd-4bb1-86c3-cf410f587f1e">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey6}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected6}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch7" id="26d2a2e5-3000-4033-8bd8-dba65e2bcffa">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey7}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected7}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch8" id="869b1f1e-d30f-49f0-8d08-ba43dc1fb846">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey8}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected8}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch9" id="a1ef47c5-73a0-41bb-9c74-94b548d81411">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey9}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected9}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch10" id="54b4df97-11df-4566-91dc-a5a5a7af4d80">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey10}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected10}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch11" id="bbe17753-8c90-429a-bc90-bc7b00db0040">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey11}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected11}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch12" id="fe0cd225-939a-49a2-ab6e-8912fcd3948c">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey12}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected12}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
+          <con:entry key="path" value="${ScenarioDataSource#path}"/>
+          <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>path</con:entry>
+          <con:entry>authorization</con:entry>
+          <con:entry>client_id</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="PUTRequest" id="f971273d-fd12-43a4-9cf9-4b29a0b3e442">
+    <con:settings/>
+    <con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="PUT" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="PUTRequest" id="0dc66275-d1b1-4688-9f71-f7d684c5b346" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.myprototype.com.au</con:endpoint>
+        <con:request>${ScenarioDataSource#requestPayload}</con:request>
+        <con:originalUri>https://www.google.com.au/</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="4f927dcd-3214-4a04-a85f-c9529f7b56f5">
+          <con:configuration>
+            <scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
 def headers = messageExchange.response.responseHeaders
 def actualHTTPResponse = headers['#status#'][0]
-assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch1" id="72961d2e-6260-45bf-aeca-f0acd6ca1fae"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey1}</path><content>${ScenarioDataSource#assertionPayloadExpected1}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch2" id="4fdd36eb-d08d-47f4-8fa7-bacbaf49682e"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey2}</path><content>${ScenarioDataSource#assertionPayloadExpected2}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch3" id="f77898c8-f2b6-4e61-90b5-f6b21bf73b23"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey3}</path><content>${ScenarioDataSource#assertionPayloadExpected3}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch4" id="a0b9e4b6-18e5-4f2f-bbcd-b02862f166aa"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey4}</path><content>${ScenarioDataSource#assertionPayloadExpected4}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch5" id="e18f3b12-1b92-4208-8d1d-4e7d1c1e02bd"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey5}</path><content>${ScenarioDataSource#assertionPayloadExpected5}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch6" id="28efc9f7-9825-4fe9-9dea-b700a1e6aba1"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey6}</path><content>${ScenarioDataSource#assertionPayloadExpected6}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch7" id="3bfd5665-5dba-4244-96f1-aa53fc1d0874"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey7}</path><content>${ScenarioDataSource#assertionPayloadExpected7}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch8" id="7147fa25-f6ac-4b5b-a536-f191b2bd5d36"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey8}</path><content>${ScenarioDataSource#assertionPayloadExpected8}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch9" id="ac553c53-9260-490d-947e-75f57d4e582c"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey9}</path><content>${ScenarioDataSource#assertionPayloadExpected9}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch10" id="60910d5b-1542-45e1-90b7-b4f3cce98070"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey10}</path><content>${ScenarioDataSource#assertionPayloadExpected10}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch11" id="af3d4fac-2b34-4904-aa9f-0ce3fbe094ba"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey11}</path><content>${ScenarioDataSource#assertionPayloadExpected11}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" name="JsonPathMatch12" id="3fc1fd19-bf1d-4da4-9e38-07db86d743e0"><con:configuration><path>${ScenarioDataSource#assertionPayloadKey12}</path><content>${ScenarioDataSource#assertionPayloadExpected12}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
-  <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
-  <con:entry key="path" value="${ScenarioDataSource#path}"/>
-  <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
-  <con:entry key="Content-Type" value="applciation/json"/>
-</con:parameters><con:parameterOrder><con:entry>path</con:entry><con:entry>client_id</con:entry><con:entry>Content-Type</con:entry></con:parameterOrder><con:environmentSpec><con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3"><con:authProfile>Inherit From Parent</con:authProfile></con:entry><con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="DELETERequest" id="5fe7c1ff-50b3-4ab5-a739-65981c3b9bdc"><con:settings/><con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="DELETE" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="DELETERequest" id="55b55180-e29d-4e4e-96bc-059eb661efb4" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://api.myprototype.com.au</con:endpoint><con:request>${ScenarioDataSource#requestPayload}</con:request><con:originalUri>https://www.google.com.au/</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="7fd4eb22-f22d-4845-adbe-30633ab3b757"><con:configuration><scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
+assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch1" id="72961d2e-6260-45bf-aeca-f0acd6ca1fae">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey1}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected1}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch2" id="4fdd36eb-d08d-47f4-8fa7-bacbaf49682e">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey2}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected2}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch3" id="f77898c8-f2b6-4e61-90b5-f6b21bf73b23">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey3}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected3}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch4" id="a0b9e4b6-18e5-4f2f-bbcd-b02862f166aa">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey4}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected4}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch5" id="e18f3b12-1b92-4208-8d1d-4e7d1c1e02bd">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey5}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected5}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch6" id="28efc9f7-9825-4fe9-9dea-b700a1e6aba1">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey6}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected6}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch7" id="3bfd5665-5dba-4244-96f1-aa53fc1d0874">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey7}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected7}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch8" id="7147fa25-f6ac-4b5b-a536-f191b2bd5d36">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey8}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected8}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch9" id="ac553c53-9260-490d-947e-75f57d4e582c">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey9}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected9}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch10" id="60910d5b-1542-45e1-90b7-b4f3cce98070">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey10}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected10}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch11" id="af3d4fac-2b34-4904-aa9f-0ce3fbe094ba">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey11}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected11}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" name="JsonPathMatch12" id="3fc1fd19-bf1d-4da4-9e38-07db86d743e0">
+          <con:configuration>
+            <path>${ScenarioDataSource#assertionPayloadKey12}</path>
+            <content>${ScenarioDataSource#assertionPayloadExpected12}</content>
+            <allowWildcards>true</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
+          <con:entry key="path" value="${ScenarioDataSource#path}"/>
+          <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
+          <con:entry key="Content-Type" value="applciation/json"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>path</con:entry>
+          <con:entry>client_id</con:entry>
+          <con:entry>Content-Type</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="DELETERequest" id="5fe7c1ff-50b3-4ab5-a739-65981c3b9bdc">
+    <con:settings/>
+    <con:config service="ScenarioGenericService" resourcePath="/{path}" methodName="DELETE" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="DELETERequest" id="55b55180-e29d-4e4e-96bc-059eb661efb4" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.myprototype.com.au</con:endpoint>
+        <con:request>${ScenarioDataSource#requestPayload}</con:request>
+        <con:originalUri>https://www.google.com.au/</con:originalUri>
+        <con:assertion type="GroovyScriptAssertion" name="Script Assertion" id="7fd4eb22-f22d-4845-adbe-30633ab3b757">
+          <con:configuration>
+            <scriptText>def expectedHTTPResponse = context.expand( '${ScenarioDataSource#assertionHttpResCode}' )
 def headers = messageExchange.response.responseHeaders
 def actualHTTPResponse = headers['#status#'][0]
-assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="4480e667-a54d-420e-95dc-22c3dc88597c" name="ScriptAssertionTest"><con:configuration><scriptText>
-import com.jayway.jsonpath.JsonPath
+assert expectedHTTPResponse == actualHTTPResponse, "HTTP Response code does not match"</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="4480e667-a54d-420e-95dc-22c3dc88597c" name="ScriptAssertionTest">
+          <con:configuration>
+            <scriptText>import com.jayway.jsonpath.JsonPath
 
 def responseMessage = messageExchange.response.responseContent
 def isResponseNULL = context.expand( '${ScenarioDataSource#isResponseNULL}' )
@@ -83,9 +682,83 @@ if (isResponseNULL.equals("true")) {
    if(assertionPayloadExpected12.equals("*")) {assert JsonPath.read(responseMessage, assertionPayloadKey12) =~ "." + assertionPayloadExpected12, "response doesn't match for assertionPayloadExpected12"}else{assert JsonPath.read(responseMessage, assertionPayloadKey12) == assertionPayloadExpected12, "response doesn't match for assertionPayloadExpected12"}
    
 
-}</scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
-  <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
-  <con:entry key="path" value="${ScenarioDataSource#path}"/>
-  <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
-  <con:entry key="Content-Type" value="application/json"/>
-</con:parameters><con:parameterOrder><con:entry>path</con:entry><con:entry>authorization</con:entry><con:entry>client_id</con:entry></con:parameterOrder><con:environmentSpec><con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3"><con:authProfile>Inherit From Parent</con:authProfile></con:entry><con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="End" id="3e54c78e-7a89-4ed3-ac8f-6218afdd0090"><con:settings/><con:config><script/></con:config></con:testStep><con:testStep type="datasourceloop" name="ScenarioDataSourceLoop" id="73a4b11b-6ac1-447d-98ec-4ef9c3a80402"><con:settings/><con:config><dataSourceStep>ScenarioDataSource</dataSourceStep><targetStep>Start</targetStep><discardResults>true</discardResults></con:config></con:testStep><con:testStep type="datasourceloop" name="MicroserviceDataSourceLoop" id="b35524e7-9209-4021-ab1a-717acb779e00"><con:settings/><con:config><dataSourceStep>MicroservicesDataSource</dataSourceStep><targetStep>ScenarioDataSource</targetStep><discardResults>true</discardResults></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>f6ddf0ea-562d-44ef-8088-a4ee7a864fd6</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>73a4b11b-6ac1-447d-98ec-4ef9c3a80402</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>d5e655b9-f887-4299-b166-8a12500e496d</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>3e54c78e-7a89-4ed3-ac8f-6218afdd0090</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>493c4fd7-1aee-4d3c-9234-7d5e6bbb1ee3</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
+}</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="authorization" value="Bearer ${#Project#tempToken}"/>
+          <con:entry key="path" value="${ScenarioDataSource#path}"/>
+          <con:entry key="client_id" value="${ScenarioDataSource#clientId}"/>
+          <con:entry key="Content-Type" value="application/json"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>path</con:entry>
+          <con:entry>authorization</con:entry>
+          <con:entry>client_id</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="9dd95e45-8e52-4747-9dc0-c6da44243ac3">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+          <con:entry environmentId="d6b99dd7-7eeb-40d4-8609-1c2c3bb5f3fb">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="groovy" name="End" id="3e54c78e-7a89-4ed3-ac8f-6218afdd0090">
+    <con:settings/>
+    <con:config>
+      <script/>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="ScenarioDataSourceLoop" id="73a4b11b-6ac1-447d-98ec-4ef9c3a80402">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>ScenarioDataSource</dataSourceStep>
+      <targetStep>Start</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="MicroserviceDataSourceLoop" id="b35524e7-9209-4021-ab1a-717acb779e00">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>MicroservicesDataSource</dataSourceStep>
+      <targetStep>ScenarioDataSource</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>f6ddf0ea-562d-44ef-8088-a4ee7a864fd6</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>73a4b11b-6ac1-447d-98ec-4ef9c3a80402</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>d5e655b9-f887-4299-b166-8a12500e496d</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>3e54c78e-7a89-4ed3-ac8f-6218afdd0090</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>493c4fd7-1aee-4d3c-9234-7d5e6bbb1ee3</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>
