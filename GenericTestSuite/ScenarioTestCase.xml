@@ -8,7 +8,7 @@
     <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <con:dataSource type="Excel">
         <con:configuration>
-          <file>automated-api-qa-master/API-Automated-QA-Template.xlsx</file>
+          <file>GenericProject-readyapi-project/API-Automated-QA-Template.xlsx</file>
           <worksheet>Overview</worksheet>
           <cell>D5</cell>
           <ignoreEmpty>true</ignoreEmpty>
@@ -33,7 +33,7 @@
     <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <con:dataSource type="Excel">
         <con:configuration>
-          <file>automated-api-qa-master/API-Automated-QA-Template.xlsx</file>
+          <file>GenericProject-readyapi-project/API-Automated-QA-Template.xlsx</file>
           <worksheet>${MicroservicesDataSource#sheetName}</worksheet>
           <cell>B4</cell>
           <ignoreEmpty>true</ignoreEmpty>
