@@ -41,18 +41,21 @@ Resolving deltas: 100% (62/62), done.
 $ 
 
 ```
+## 3. Open Automated API DDT Framework using SmartBear ReadyAPI
 
-4. Open SmartBear ReadyAPI and select "Import Composite Project"
-
-![alt text](https://media-assets.myprototype.com.au/github/images/ReadyAPI-import-composite-project-v2.png)
+![ReadyAPI Import Composite Project](https://media-assets.myprototype.com.au/github/images/ReadyAPI-import-composite-project-v2.png)
 
 
-## 3. Update the spreadsheet with your test cases
+## 4. Open the spreadsheet and update it with your test scenarios
+The excel spreadsheet included in the API DDT Farmework, has an Overview Sheet and multiple other sheets. The Overview sheet contains the overview of the Microservices that is the scope of testing. The location column highlighted in red determine which sheet/s in scope for testing. 
+
+The API DDT Framework loops on the list in that column to get all the sheets in-scope and execute all the test steps included in every sheet. If you want to skip one of the sheets from testing, you can do so by removing it's location value from the column highlighted in red or remove the whole row.
+
+![API DDT Framework Spreadsheet - Overview Sheet](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-01-v2.png)
+## 5. Run Functional Test
 saasasasa
-## 4. Run Functional Test
+## 6. Run Security Test
 saasasasa
-## 5. Run Security Test
+## 7. Run Performance Test
 saasasasa
-## 6. Run Performance Test
-saasasasa
-## 7. Check out the generated test report
+## 8. Check out the generated test report
