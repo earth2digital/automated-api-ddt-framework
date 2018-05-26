@@ -111,7 +111,7 @@ $
 
 ## 9. Check out the generated test report
 
-## AWS Linus Tip
+## AWS Linux Tip
 
 While running the test cases using command line, you might experience problems as the microsoft fonts are not installed on AWS Linux. To solve the issue, execute the below commands:
 
