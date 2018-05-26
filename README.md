@@ -78,7 +78,7 @@ For now, you can choose to update the sheets accordingly and run the API DDT Fra
 
 To run the Functional Test cases, just select the project name on the left handside menu "GenericProject_v7" and then click the green play arrow highlighted in red.
 
-![API DDT Framework Spreadsheet - Functional Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-04-v2.png)
+![API DDT Framework Spreadsheet - Functional Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-04-v3.png)
 
 ## 6. Run Security Test
 
