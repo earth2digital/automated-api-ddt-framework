@@ -1,7 +1,7 @@
 ![DDT Framework Functional Testing - Pass](https://img.shields.io/badge/DDT%20Framework%20|%20Functional%20%20-pass-green.svg?longCache=true&style=for-the-badge)<br>
 ![DDT Framework Security Testing - Pass](https://img.shields.io/badge/DDT%20Framework%20|%20Security%20%20%20%20%20%20-pass-green.svg?longCache=true&style=for-the-badge) <br>
 ![DDT Framework Performance Testing - Pass](https://img.shields.io/badge/DDT%20Framework%20|%20Performance-fail%20-red.svg?longCache=true&style=for-the-badge)
-# Automated API DDT (Data Driven Test) Framework
+# Automated API DDT (Data-Driven Test) Framework
 ## Overview
 
 API Data-driven testing (DDT) describes a way of testing where test input data and assertions keys and expected values are all driven from a table. Typically the table is a spreadsheet with every row represent a test step or an API call.
