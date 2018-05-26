@@ -120,6 +120,14 @@ $
 
 ## 9. Check out the generated test report
 
+To run the project report, just select the Project Name on the left handside menu "GenericProject_v7" and then click the gray report icon highlighted in red.
+
+![API DDT Framework Spreadsheet - Performance Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-07.png)
+
+To save the report as PDF or any other format, click on the save icon highlighted in red.
+
+![API DDT Framework Spreadsheet - Performance Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-08.png)
+
 ## AWS Linux Tip
 
 While running the test cases using command line, you might experience problems as the microsoft fonts are not installed on AWS Linux. To solve the issue, execute the below commands:
