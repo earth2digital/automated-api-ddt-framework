@@ -15,16 +15,37 @@ If you adopt this framework for your API testing, you are not only going to save
 ## 1. Read the article at my blog
 Before you go any further, it is better to go through the article I published in my blog titled [DX: How to boost the performance of your APIs - Part I](https://www.earth2.digital/blog/How-to-boost-the-performance-of-your-APIs-1-adam-ali.html)
 ## 2. Check out to create git repository on your machine?
-1. Install JEST (Facebook)
+1. Create new directory
 ```
-$ cd app
-$ npm install --save-dev jest-cli
-$ cat package.json
+$ mkdir api-ddt-framework
+$ cd api-ddt-framework
 ```
-2. Create Unit Test Cases file
+2. Initialize git repository in the newly created directory
 ```
-$ vi server.test.js
+$ git init
+Initialized empty Git repository in /Users/{username}/Downloads/api-ddt-framework/.git/
+$
 ```
+3. Get a copy of this repo
+
+```
+$ git clone git@github.com-{gihubUsername}:earth2digital/automated-api-ddt-framework.git
+Cloning into 'automated-api-ddt-framework'...
+Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
+Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
+remote: Counting objects: 126, done.
+remote: Compressing objects: 100% (109/109), done.
+remote: Total 126 (delta 62), reused 58 (delta 15), pack-reused 0
+Receiving objects: 100% (126/126), 83.42 KiB | 199.00 KiB/s, done.
+Resolving deltas: 100% (62/62), done.
+$ 
+
+```
+
+4. Open SmartBear ReadyAPI and select "Import Composite Project"
+
+
+
 ## 3. Update the spreadsheet with your test cases
 saasasasa
 ## 4. Run Functional Test
