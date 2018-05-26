@@ -14,7 +14,8 @@ If you adopt this framework for your API testing, you are not only going to save
 
 ## 1. Read the article at my blog
 Before you go any further, it is better to go through the article I published in my blog titled [DX: How to boost the performance of your APIs - Part I](https://www.earth2.digital/blog/How-to-boost-the-performance-of-your-APIs-1-adam-ali.html)
-## 2. Check out to create git repository on your machine?
+
+## 2. Create a git repository on your machine and get a copy of this repository
 1. Create new directory
 ```
 $ mkdir api-ddt-framework
