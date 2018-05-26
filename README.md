@@ -83,4 +83,19 @@ To run the functional test cases, just select the project name on the left hands
 saasasasa
 ## 7. Run Performance Test
 saasasasa
-## 8. Check out the generated test report
+## 8. Run all tests as part of CI/CD Pipeline using command line
+
+```
+$ git clone git@github.com-{gihubUsername}:earth2digital/automated-api-ddt-framework.git
+Cloning into 'automated-api-ddt-framework'...
+Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
+Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
+remote: Counting objects: 126, done.
+remote: Compressing objects: 100% (109/109), done.
+remote: Total 126 (delta 62), reused 58 (delta 15), pack-reused 0
+Receiving objects: 100% (126/126), 83.42 KiB | 199.00 KiB/s, done.
+Resolving deltas: 100% (62/62), done.
+$ 
+
+```
+## 9. Check out the generated test report
