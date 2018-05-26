@@ -71,8 +71,14 @@ The Microservice sheet also has a column called "Run" highlighted in red. That c
 
 ![API DDT Framework Spreadsheet - Microservice sheet](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-03.png)
 
+For now, you can choose to update the sheets accordingly and run the API DDT Framework or you can just run it without doing any updates as the example sheets have been tested to be working fine for Functional, Security and Performance testing. Although performance testing needs a bit of a tweak to give accurate results.
+
 ## 5. Run Functional Test
-saasasasa
+
+To run the functional test cases, just select the project name on the left handside menu "GenericProject_v7" and then click the green play arrow highlighted in red.
+
+![API DDT Framework Spreadsheet - Microservice sheet](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-04.png)
+
 ## 6. Run Security Test
 saasasasa
 ## 7. Run Performance Test
