@@ -44,6 +44,7 @@ $
 
 4. Open SmartBear ReadyAPI and select "Import Composite Project"
 
+![alt text](https://media-assets.myprototype.com.au/github/images/ReadyAPI-import-composite-project-v2.png)
 
 
 ## 3. Update the spreadsheet with your test cases
