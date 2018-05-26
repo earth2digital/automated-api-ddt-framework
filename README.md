@@ -85,17 +85,42 @@ saasasasa
 saasasasa
 ## 8. Run all tests as part of CI/CD Pipeline using command line
 
+1. Run Functional Test
+
 ```
-$ git clone git@github.com-{gihubUsername}:earth2digital/automated-api-ddt-framework.git
-Cloning into 'automated-api-ddt-framework'...
-Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
-Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
-remote: Counting objects: 126, done.
-remote: Compressing objects: 100% (109/109), done.
-remote: Total 126 (delta 62), reused 58 (delta 15), pack-reused 0
-Receiving objects: 100% (126/126), 83.42 KiB | 199.00 KiB/s, done.
-Resolving deltas: 100% (62/62), done.
+$ sudo /opt/SmartBear/ReadyAPI-2.3.0/bin/testrunner.sh -e https://api.myprototype.com.au -FPDF -R"Project Report" /Users/{username}/downloads/api-ddt-framework/automated-api-ddt-framework  -f /Users/{username}/downloads/api-ddt-framework
 $ 
 
 ```
+
+2. Run Security Test
+
+```
+$ sudo /opt/SmartBear/ReadyAPI-2.3.0/bin/securitytestrunner.sh /Users/{username}/downloads/api-ddt-framework/automated-api-ddt-framework -c "SecurityTest" -d https://api.myprototype.com.au -FPDF -R"SecurityTest Report" 
+$ 
+
+```
+
+2. Run Performance Test
+
+```
+$  sudo /opt/SmartBear/ReadyAPI-2.3.0/bin/loadtestrunner.sh  -E test -FPDF /Users/{username}/downloads/api-ddt-framework/automated-api-ddt-framework  -n "LoadTest" -S  "Arriving VU/s,Time Taken" 
+$ 
+
+```
+
 ## 9. Check out the generated test report
+
+## AWS Linus Tip
+
+While running the test cases using command line, you might experience problems as the microsoft fonts are not installed on AWS Linux. To solve the issue, execute the below commands:
+
+```
+$ wget http://corefonts.sourceforge.net/msttcorefonts-2.5-1.spec
+$ wget https://www.cabextract.org.uk/cabextract-1.6-1.i386.rpm
+$ sudo yum install cabextract-1.6-1.i386.rpm
+$ sudo yum install -y rpmdevtools rpm-build
+$ rpmbuild -ba msttcorefonts-2.5-1.spec
+$ sudo yum install /home/ec2-user/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm
+
+```
