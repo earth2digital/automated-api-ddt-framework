@@ -76,14 +76,22 @@ For now, you can choose to update the sheets accordingly and run the API DDT Fra
 
 ## 5. Run Functional Test
 
-To run the functional test cases, just select the project name on the left handside menu "GenericProject_v7" and then click the green play arrow highlighted in red.
+To run the Functional Test cases, just select the project name on the left handside menu "GenericProject_v7" and then click the green play arrow highlighted in red.
 
-![API DDT Framework Spreadsheet - Microservice sheet](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-04.png)
+![API DDT Framework Spreadsheet - Functional Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-04.png)
 
 ## 6. Run Security Test
-saasasasa
+
+To run the Security Test cases, just select the Test Suite on the left handside menu "SecurityTest" and then click the green play arrow highlighted in red.
+
+![API DDT Framework Spreadsheet - Security Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-05.png)
+
 ## 7. Run Performance Test
-saasasasa
+
+To run the Security Test cases, just select the Test Suite on the left handside menu "LoadTest" and then click the green play arrow highlighted in red.
+
+![API DDT Framework Spreadsheet - Performance Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-06.png)
+
 ## 8. Run all tests as part of CI/CD Pipeline using command line
 
 1. Run Functional Test
