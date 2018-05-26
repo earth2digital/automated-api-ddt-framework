@@ -12,10 +12,19 @@ This API DDT Framework is developed using SmartBear ReadyAPI product. To use the
 
 If you adopt this framework for your API testing, you are not only going to save a lot of time and money, you would also easily add security and performance testing to your API product testing without any extra effort as both tests are embedded in this DDT framework.
 
-## 1.Read the article at my blog
+## 1. Read the article at my blog
 Before you go any further, it is better to go through the article I published in my blog titled [DX: How to boost the performance of your APIs - Part I](https://www.earth2.digital/blog/How-to-boost-the-performance-of-your-APIs-1-adam-ali.html)
-## 2.Check out to create git repository on your machine?
-saasasasa
+## 2. Check out to create git repository on your machine?
+1. Install JEST (Facebook)
+```
+$ cd app
+$ npm install --save-dev jest-cli
+$ cat package.json
+```
+2. Create Unit Test Cases file
+```
+$ vi server.test.js
+```
 ## 3. Update the spreadsheet with your test cases
 saasasasa
 ## 4. Run Functional Test
