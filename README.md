@@ -47,13 +47,29 @@ $
 
 
 ## 4. Open the spreadsheet and update it with your test scenarios
-The excel spreadsheet included in the API DDT Farmework, has an Overview Sheet and multiple other sheets. The Overview sheet contains the overview of the Microservices that is the scope of testing. The location column highlighted in red determine which sheet/s in scope for testing. 
+### 1. Overview Sheet
+
+The excel spreadsheet included in the API DDT Farmework, has 2 types of spreadsheets, an Overview Sheet and a Microservice sheet. The Overview sheet contains the overview of the Microservices that is the scope of testing. The location column highlighted in red determine which sheet/s in scope for testing.
 
 ![API DDT Framework Spreadsheet - Overview Sheet](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-01-v2.png)
 
-The API DDT Framework loops on the list in that column to get all the sheets in-scope and execute all the test steps included in every sheet. If you want to skip one of the sheets from testing, you can do so by removing it's location value from the column highlighted in red or remove the whole row.
+The API DDT Framework loops on the list in that column to get all the sheets in-scope and execute all the test steps included in every sheet. Every sheet represent a Microservice to be tested. If you want to skip one of the sheets (Or Microservices) from testing, you can do so by removing it's location value from the column highlighted in red or remove the whole row.
 
 ![API DDT Framework Spreadsheet - Sheets](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-02.png)
+
+### 2. Microservice Sheet
+The Microservice sheet has all the test steps that need to be executed in all test scnarios for a particular Microservice. In this example we have 5 Microservices to be tested:
+
+- Account
+- Notification
+- Order
+- Connection
+
+Every Microservice sheet has 2 sets of test input data, Request Parameters and Response Assertions. The API DDT Framework supports up to 13 assertions on the API Response. The assertions are of two types, HTTP response code and JSON response message payload. For the response message payload type, you can define any key you want using JSON Path (to be retrieved from the JSON payload in the response) and expected value using just normal text or another JSON Path in the response message.
+
+The Microservice sheet also has a column called "Run" highlighted in red. That column can be used to mark steps to be skipped from testing. All you need to do is to set it to true or false for whether to have the step run or not.
+
+![API DDT Framework Spreadsheet - Microservice sheet](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-03.png)
 
 ## 5. Run Functional Test
 saasasasa
