@@ -19,8 +19,8 @@ Before you go any further, it is better to go through the article I published in
 1. add your github ssh identity
 ```
 $ ssh-add ~/.ssh/id_rsa
-Enter passphrase for /Users/adam/.ssh/id_rsa:
-Identity added: /Users/{Username}/.ssh/id_rsa (/Users/adam/.ssh/id_rsa)
+Enter passphrase for /Users/{Username}/.ssh/id_rsa:
+Identity added: /Users/{Username}/.ssh/id_rsa (/Users/{Username}/.ssh/id_rsa)
 $ 
 ```
 2. Check if identity got added
