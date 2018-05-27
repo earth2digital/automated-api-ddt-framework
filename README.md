@@ -16,29 +16,46 @@ If you adopt this framework for your API testing, you are not only going to save
 Before you go any further, it is better to go through the article I published in my blog titled [DX: How to boost the performance of your APIs - Part I](https://www.earth2.digital/blog/How-to-boost-the-performance-of-your-APIs-1-adam-ali.html)
 
 ## 2. Create a git repository on your machine and get a copy of this repository
-1. Create new directory
+1. add your github ssh identity
 ```
-$ mkdir api-ddt-framework
-$ cd api-ddt-framework
+$ ssh-add ~/.ssh/id_rsa
+Enter passphrase for /Users/adam/.ssh/id_rsa:
+Identity added: /Users/{Username}/.ssh/id_rsa (/Users/adam/.ssh/id_rsa)
+$ 
 ```
-2. Initialize git repository in the newly created directory
+2. Check if identity got added
 ```
-$ git init
-Initialized empty Git repository in /Users/{username}/Downloads/api-ddt-framework/.git/
+$ ssh-add -l
+2048 SHA256:91TnoNM/aH6+1/iajdcMEQ+Ymre1+yX/O/yBdy6FHeE /Users/{Username}/.ssh/id_rsa (RSA)
 $
 ```
 3. Get a copy of this repo
 
 ```
-$ git clone git@github.com-{gihubUsername}:earth2digital/automated-api-ddt-framework.git
+$ github clone git@github.com:earth2digital/automated-api-ddt-framework.git
 Cloning into 'automated-api-ddt-framework'...
-Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
-Enter passphrase for key '/Users/{Username}/.ssh/id_rsa': 
-remote: Counting objects: 126, done.
-remote: Compressing objects: 100% (109/109), done.
-remote: Total 126 (delta 62), reused 58 (delta 15), pack-reused 0
-Receiving objects: 100% (126/126), 83.42 KiB | 199.00 KiB/s, done.
-Resolving deltas: 100% (62/62), done.
+remote: Counting objects: 196, done.
+remote: Total 196 (delta 0), reused 0 (delta 0), pack-reused 196
+Receiving objects: 100% (196/196), 113.89 KiB | 277.00 KiB/s, done.
+Resolving deltas: 100% (99/99), done.
+$ 
+$ ls -ltr automated-api-ddt-framework
+total 624
+-rw-r--r--  1 yakov  staff   42929 27 Apr 17:33 API-Automated-QA-Template.xlsx
+-rw-r--r--  1 yakov  staff    3216 27 Apr 17:33 CODE_OF_CONDUCT.md
+-rw-r--r--  1 yakov  staff     141 27 Apr 17:33 CONTRIBUTING.md
+drwxr-xr-x  5 yakov  staff     160 27 Apr 17:33 GenericTestSuite
+-rw-r--r--  1 yakov  staff   35147 27 Apr 17:33 LICENSE
+-rw-r--r--  1 yakov  staff   15665 27 Apr 17:33 LoadTest.xml
+drwxr-xr-x  5 yakov  staff     160 27 Apr 17:33 LoginService
+-rw-r--r--  1 yakov  staff     734 27 Apr 17:33 PULL_REQUEST_TEMPLATE.md
+-rw-r--r--  1 yakov  staff    8233 27 Apr 17:33 README.md
+drwxr-xr-x  5 yakov  staff     160 27 Apr 17:33 ScenarioGenericService
+-rw-r--r--  1 yakov  staff  179459 27 Apr 17:33 SecurityTest.xml
+-rw-r--r--  1 yakov  staff      26 27 Apr 17:33 _config.yml
+-rw-r--r--  1 yakov  staff      53 27 Apr 17:33 element.order
+drwxr-xr-x  3 yakov  staff      96 27 Apr 17:33 reports
+-rw-r--r--  1 yakov  staff    4647 27 Apr 17:33 settings.xml
 $ 
 
 ```
