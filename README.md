@@ -59,12 +59,18 @@ drwxr-xr-x  3 yakov  staff      96 27 Apr 17:33 reports
 $ 
 
 ```
-## 3. Open Automated API DDT Framework using SmartBear ReadyAPI
+## 3. Download SmartBear ReadyAPI
+
+Download SmartBear ReadyAPI v2.3 trial version or use the 2.3 licensed version you have. The API DDT Framework uses the latest features in SmartBear ReadyAPI so you will have to upgrade to version 2.3 if you have an earlier version.
+
+[SmartBear ReadyAPI Trial Download](https://smartbear.com/product/ready-api/free-trial/)
+
+## 4. Open Automated API DDT Framework using SmartBear ReadyAPI
 
 ![ReadyAPI Import Composite Project](https://media-assets.myprototype.com.au/github/images/ReadyAPI-import-composite-project-v2.png)
 
 
-## 4. Open the spreadsheet and update it with your test scenarios
+## 5. Open the spreadsheet and update it with your test scenarios
 ### 1. Overview Sheet
 
 The excel spreadsheet included in the API DDT Farmework, has 2 types of spreadsheets, an Overview Sheet and a Microservice sheet. The Overview sheet contains the overview of the Microservices that is the scope of testing. The location column highlighted in red determine which sheet/s in scope for testing.
@@ -91,25 +97,25 @@ The Microservice sheet also has a column called "Run" highlighted in red. That c
 
 For now, you can choose to update the sheets accordingly and run the API DDT Framework or you can just run it without doing any updates as the example sheets have been tested to be working fine for Functional, Security and Performance testing. Although performance testing needs a bit of a tweak to give accurate results.
 
-## 5. Run Functional Test
+## 6. Run Functional Test
 
 To run the Functional Test cases, just select the project name on the left handside menu "GenericProject_v7" and then click the green play arrow highlighted in red.
 
 ![API DDT Framework Spreadsheet - Functional Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-04-v3.png)
 
-## 6. Run Security Test
+## 7. Run Security Test
 
 To run the Security Test cases, just select the Test Suite on the left handside menu "SecurityTest" and then click the green play arrow highlighted in red.
 
 ![API DDT Framework Spreadsheet - Security Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-05.png)
 
-## 7. Run Performance Test
+## 8. Run Performance Test
 
 To run the Security Test cases, just select the Test Suite on the left handside menu "LoadTest" and then click the green play arrow highlighted in red.
 
 ![API DDT Framework Spreadsheet - Performance Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-06.png)
 
-## 8. Run all tests as part of CI/CD Pipeline using command line
+## 9. Run all tests as part of CI/CD Pipeline using command line
 
 1. Run Functional Test
 
@@ -135,7 +141,7 @@ $
 
 ```
 
-## 9. Check out the generated test report
+## 10. Check out the generated test report
 
 To run the project report, just select the Project Name on the left handside menu "GenericProject_v7" and then click the gray report icon highlighted in red.
 
