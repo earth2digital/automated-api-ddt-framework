@@ -61,7 +61,7 @@ $
 ```
 ## 3. Download SmartBear ReadyAPI
 
-Download SmartBear ReadyAPI v2.3 trial version or use the 2.3 licensed version you have. The API DDT Framework uses the latest features in SmartBear ReadyAPI so you will have to upgrade to version 2.3 if you have an earlier version.
+Download and install SmartBear ReadyAPI v2.3 trial version or use the 2.3 licensed version you have. The API DDT Framework uses the latest features in SmartBear ReadyAPI so you will have to upgrade to version 2.3 if you have an earlier version.
 
 [SmartBear ReadyAPI Trial Download](https://smartbear.com/product/ready-api/free-trial/)
 
