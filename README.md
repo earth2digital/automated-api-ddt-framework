@@ -111,7 +111,7 @@ To run the Security Test cases, just select the Test Suite on the left handside 
 
 ## 8. Run Performance Test
 
-To run the Security Test cases, just select the Test Suite on the left handside menu "LoadTest" and then click the green play arrow highlighted in red.
+To run the Performance Test cases, just select the Test Suite on the left handside menu "LoadTest" and then click the green play arrow highlighted in red.
 
 ![API DDT Framework Spreadsheet - Performance Test](https://media-assets.myprototype.com.au/github/images/API-DDT-Spreadsheet-06.png)
 
